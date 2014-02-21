@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="Movies">
+<head>
+    <title>Movies</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container" ng-controller="MoviesController">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Search</h1>
+                <form class="form-inline">
+                    <input type="text" class="form-control" ng-model="formMovieTitle" ng-model-instant />
+                    <button ng-click="formSearchMovies()" class="btn">Search Movies</button>
+                </form>
+                <table class="table-striped">
+                    <tr ng-repeat="movie in searchResults.Search">
+                        <td>
+                            <a href="#" ng-click="getMovieDetail(movie.imdbID)"> {{movie.Title}}</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6" ng-show="movieDetails">
+                <h1>{{movieDetails.Title}} ({{movieDetails.Year}})</h1>
+                <img ng-src="{{movieDetails.Poster}}" alt=""/>
+                <p>
+                    {{movieDetails.Plot}}
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
